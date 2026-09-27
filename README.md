@@ -2,7 +2,7 @@
 
 A collection of **204 CSS design systems**, **45 interactive stories**, **62 tech guides**, **50 browser games**, a **chiptune music studio**, **45 creative tools**, a **Kids' Corner** with toddler-friendly games and activities, and a **daily AI newspaper** — all built with vanilla HTML, CSS, and JavaScript. No frameworks. No build step. Just open a file in your browser.
 
-**[Browse the live site](https://ggprompts.github.io/htmlstyleguides/)**
+**[Browse the live site](https://may-gay.github.io/styleguides/)**
 
 ---
 
@@ -47,7 +47,7 @@ Every style guide in this repo is a ready-made design system that AI tools can r
 
 That's it. The AI will read the CSS variables, typography, color palette, and component patterns — then apply them to whatever you're building.
 
-Browse the [live site](https://ggprompts.github.io/htmlstyleguides/) to find a style you like, then point your AI at the raw file.
+Browse the [live site](https://may-gay.github.io/styleguides/) to find a style you like, then point your AI at the raw file.
 
 ---
 
