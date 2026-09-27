@@ -1,0 +1,50 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Prepare site
+        run: |
+          mkdir -p _site
+          rsync -a \
+            --exclude='/.git/' \
+            --exclude='/.github/' \
+            --exclude='/.beads/' \
+            --exclude='/.claude/' \
+            --exclude='/_site/' \
+            --exclude='/AGENTS.md' \
+            --exclude='/CLAUDE.md' \
+            --exclude='/README.md' \
+            --exclude='/CNAME' \
+            --exclude='/.gitignore' \
+            --exclude='/.gitattributes' \
+            --exclude='/BingSiteAuth.xml' \
+            --exclude='/google9451c2633ddfe3e1.html' \
+            ./ _site/
+          sed -i 's#https://ggprompts\.com/#https://may-gay.github.io/styleguides/#g' _site/sitemap.xml
+          sed -i 's#https://ggprompts\.com/sitemap\.xml#https://may-gay.github.io/styleguides/sitemap.xml#g' _site/robots.txt
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
